@@ -25,3 +25,18 @@ function getPage(filter) {
     });
   }
 }
+
+app.proto.addTodo = function(newTodo) {
+  if(!newTodo) return;
+
+  this.model.add('todos', {
+    text: newTodo,
+    completed: false
+  });
+
+  this.model.set('_page.newTodo', '');
+};
+
+app.proto.deleteTodo = function(todoId) {
+  this.model.del('todos.' + todoId);
+};

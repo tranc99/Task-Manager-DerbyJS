@@ -8,8 +8,8 @@
   <header:>
     <header id="header">
       <h1>todos</h1>
-      <form id="new-todo">
-        <input id="new-todo" placeholder="What needs to be done?" autofocus>
+      <form id="new-todo" on-submit="addTodo(_page.newTodo)">
+        <input id="new-todo" placeholder="What needs to be done?" autofocus value="{{_page.newTodo}}">
       </form>
     </header>
 
@@ -18,16 +18,19 @@
       <input id="toggle-all" type="checkbox">
       <label for="toggle-all">Mark all as complete</label>
       <ul id="todo-list">
-        <li>
+        {{each _page.todos as #todo, #index}}
+        <li class="{{if #todo.completed}}completed{{/}}">
+
           <div class="view">
-            <input class="toggle" type="checkbox">
-            <label>hello</label>
-            <button class="destroy"> </button>
+            <input class="toggle" type="checkbox" checked="{{#todo.completed}}">
+            <label>{{#todo.text}}</label>
+            <button class="destroy" on-click="deleteTodo(#todo.id)"> </button>
           </div>
           <form >
             <input class="edit">
           </form>
         </li>
+        {{/each}}
       </ul>
     </section>
 
