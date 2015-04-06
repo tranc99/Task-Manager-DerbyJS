@@ -37,13 +37,13 @@
 
   <footer:>
     <footer id="footer">
-      <span id="todo-count"><strong>0 </strong>
+      <span id="todo-count"><strong>{{_page.counters.active}} </strong>
         <span> items left</span>
       </span>
       <ul id="filters">
-        <li><a href="/" class="selected">All</a></li>
-        <li><a href="/active">Active</a></li>
-        <li><a href="/completed">Completed</a></li>
+        <li><a href="/" class="{{if $render.url === '/'}}selected{{/}}">All</a></li>
+        <li><a href="/active" class="{{if $render.url === '/active'}}selected{{/}}">Active</a></li>
+        <li><a href="/completed" class="{{if $render.url === '/completed'}}selected{{/}}">Completed</a></li>
       </ul>
-      <button id="clear-completed" on-click="clearCompleted()">Clear completed (0)</button>
+      <button id="clear-completed" on-click="clearCompleted()" class="{{if _page.counters.completed === 0}}hidden{{/}}">Clear completed ({{_page.counters.completed}})</button>
     </footer>
