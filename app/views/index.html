@@ -1,0 +1,45 @@
+<Body:>
+  <section id="todoapp">
+    <view name="header"/>
+    <view name="main"/>
+    <view name="footer" />
+  </section>
+
+  <header:>
+    <header id="header">
+      <h1>todos</h1>
+      <form id="new-todo">
+        <input id="new-todo" placeholder="What needs to be done?" autofocus>
+      </form>
+    </header>
+
+  <main:>
+    <section id="main">
+      <input id="toggle-all" type="checkbox">
+      <label for="toggle-all">Mark all as complete</label>
+      <ul id="todo-list">
+        <li>
+          <div class="view">
+            <input class="toggle" type="checkbox">
+            <label>hello</label>
+            <button class="destroy"> </button>
+          </div>
+          <form >
+            <input class="edit">
+          </form>
+        </li>
+      </ul>
+    </section>
+
+  <footer:>
+    <footer id="footer">
+      <span id="todo-count"><strong>0</strong>
+        <span>items left</span>
+      </span>
+      <ul id="filters">
+        <li><a href="/" class="selected">All</a></li>
+        <li><a href="/active">Active</a></li>
+        <li><a href="/completed">Completed</a></li>
+      </ul>
+      <button id="clear-completed">Clear completed (0)</button>
+    </footer>
