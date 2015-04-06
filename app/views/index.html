@@ -19,15 +19,16 @@
       <label for="toggle-all">Mark all as complete</label>
       <ul id="todo-list">
         {{each _page.todos as #todo, #index}}
-        <li class="{{if #todo.completed}}completed{{/}}">
+        <li class="{{if #todo.completed}}completed{{/}}
+                   {{if _page.edit.id === #todo.id}}editing{{/}}">
 
           <div class="view">
             <input class="toggle" type="checkbox" checked="{{#todo.completed}}">
-            <label>{{#todo.text}}</label>
+            <label on-dblclick="editTodo(#todo)">{{#todo.text}}</label>
             <button class="destroy" on-click="deleteTodo(#todo.id)"> </button>
           </div>
-          <form >
-            <input class="edit">
+          <form on-submit="doneEditing(_page.edit)">
+            <input id="{{#todo.id}}" value="{{_page.edit.text}}" class="edit" on-keyup="cancelEditing($event)">
           </form>
         </li>
         {{/each}}
@@ -36,13 +37,13 @@
 
   <footer:>
     <footer id="footer">
-      <span id="todo-count"><strong>0</strong>
-        <span>items left</span>
+      <span id="todo-count"><strong>0 </strong>
+        <span> items left</span>
       </span>
       <ul id="filters">
         <li><a href="/" class="selected">All</a></li>
         <li><a href="/active">Active</a></li>
         <li><a href="/completed">Completed</a></li>
       </ul>
-      <button id="clear-completed">Clear completed (0)</button>
+      <button id="clear-completed" on-click="clearCompleted()">Clear completed (0)</button>
     </footer>
